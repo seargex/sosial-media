@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pesbuk
-  namespace: stag
+  namespace: stagging
   labels:
     app: pesbuk
 spec:
