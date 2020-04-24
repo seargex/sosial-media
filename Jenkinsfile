@@ -1,4 +1,4 @@
-node('staging') {    stage('Git Pull') {
+node('master') {    stage('Git Pull') {
           checkout scm
     }
       stage('Build Docker Image') {
