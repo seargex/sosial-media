@@ -8,6 +8,6 @@ node('master') {    stage('Git Pull') {
           sh "git -version"
     }
           stage('Deploy to Server') {
-          telegramSend(message: 'Hello World', chatId:1271016542
+          telegramSend(message: 'Hello World', chatId: 1271016542)
     }
 }
