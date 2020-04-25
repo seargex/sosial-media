@@ -50,14 +50,14 @@ pipeline {
         steps{
           script {
             if ( env.GIT_BRANCH == 'staging' ){
-              sh 'wget https://raw.githubusercontent.com/ikhsannugs/big-project/master/landpage-staging-deploy.yaml'
+              sh 'wget https://raw.githubusercontent.com/ikhsannugs/big-project/master/pesbuk-staging-deploy.yaml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" "${DOCKER_IMAGE_APPS}"-staging-deploy.yaml'
               sh 'kubectl apply -f "${DOCKER_IMAGE_APPS}"-staging-deploy.yaml'
               sh 'rm -rf *'
               echo "Deploy ${BUILD_NUMBER} To Server Staging ${currentBuild.currentResult}"
             }
             else if ( env.GIT_BRANCH == 'master' ){
-              sh 'wget https://raw.githubusercontent.com/ikhsannugs/big-project/master/landpage-production-deploy.yaml'
+              sh 'wget https://raw.githubusercontent.com/ikhsannugs/big-project/master/pesbuk-production-deploy.yaml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" "${DOCKER_IMAGE_APPS}"-production-deploy.yaml'
               sh 'kubectl apply -f "${DOCKER_IMAGE_APPS}"-production-deploy.yaml'
               sh 'rm -rf *'
@@ -71,13 +71,13 @@ pipeline {
         always {
           script {
             if ( env.GIT_BRANCH == 'staging' ){
-              echo "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
-              slackSend message: "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
+              echo "DEPLOY ${DOCKER_IMAGE_APPS} NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
+              slackSend message: "DEPLOY ${DOCKER_IMAGE_APPS} NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
 
             }
             else if ( env.GIT_BRANCH == 'master' ){
-              echo "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
-              slackSend message: "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER PRODUCTION ${currentBuild.currentResult}"
+              echo "DEPLOY ${DOCKER_IMAGE_APPS} NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
+              slackSend message: "DEPLOY ${DOCKER_IMAGE_APPS} NUMBER ${BUILD_NUMBER} TO SERVER PRODUCTION ${currentBuild.currentResult}"
             }
           }  
         }
