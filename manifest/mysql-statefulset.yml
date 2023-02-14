@@ -17,29 +17,31 @@ spec:
       containers:
         - name: mysql
           image: mysql:5.7
+          args:
+            - "--ignore-db-dir=lost+found"
           ports:
             - name: mysql
               protocol: TCP
               containerPort: 3306
           env:
-            - name: root_pass #root pass secret
+            - name: MYSQL_ROOT_PASSWORD #nama nya harus sesuai ama key
               valueFrom:
                 secretKeyRef:
                   name: mysql-rahasia
                   key: MYSQL_ROOT_PASSWORD
-            - name: mysql_user
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: mysql-rahasia
                   key: MYSQL_USER
-            - name: mysql_pw
+            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-rahasia
                   key: MYSQL_PASSWORD
-            - name: mysql_db
+            - name: MYSQL_DATABASE
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: mysql-konfig
                   key: MYSQL_DATABASE
           volumeMounts: #volume mounts
