@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pesbuk-deployment
+  labels:
+    app: pesbuk
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pesbuk
+  template:
+    metadata:
+      labels:
+        app: pesbuk
+    spec:
+      containers:
+      - name: pesbuk
+        image: seargex/pesbuk:v1.0
+        ports:
+        - containerPort: 80
