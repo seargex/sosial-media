@@ -19,3 +19,8 @@ spec:
         image: seargex/pesbuk:v1.0
         ports:
         - containerPort: 80
+        envFrom:
+        - SecretRef:
+          name: pesbuk-rahasia #secret pesbuk
+        - configMapRef:
+          name: pesbuk-konfig #konfigmap pesbuk
