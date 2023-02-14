@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pesbuk-service
+spec:
+  selector:
+    app:  pesbuk
+  type:  NodePort #pilih nodeportnya
+  ports:
+  - name:  web-app
+    port:  80
+    targetPort:  80
