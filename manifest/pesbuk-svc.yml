@@ -10,3 +10,4 @@ spec:
   - name:  web-app
     port:  80
     targetPort:  80
+    nodeport: 30081

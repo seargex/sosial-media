@@ -19,8 +19,24 @@ spec:
         image: seargex/pesbuk:v1.0
         ports:
         - containerPort: 80
-        envFrom:
-        - SecretRef:
-          name: pesbuk-rahasia #secret pesbuk
-        - configMapRef:
-          name: pesbuk-konfig #konfigmap pesbuk
+        env:
+          - name: DB_PASS #pass secret
+            valueFrom:
+              secretKeyRef:
+                name: pesbuk-rahasia
+                key: DB_PASS
+          - name: DB_USER #user secret
+            valueFrom:
+              secretKeyRef:
+                name: pesbuk-rahasia
+                key: DB_USER
+          - name: DB_HOST #configmap
+            valueFrom:
+              configMapKeyRef:
+                name: pesbuk-konfig
+                key: DB_HOST
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: pesbuk-konfig
+                key: DB_NAME
