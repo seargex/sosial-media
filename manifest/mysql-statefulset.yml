@@ -21,11 +21,27 @@ spec:
             - name: mysql
               protocol: TCP
               containerPort: 3306
-          envFrom:
-            - secretRef: 
-              name: mysql-rahasia #secret mysql
-            - configMapRef: 
-              name: mysql-konfig #konfigmap
+          env:
+            - name: root_pass #root pass secret
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-rahasia
+                  key: MYSQL_ROOT_PASSWORD
+            - name: mysql_user
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-rahasia
+                  key: MYSQL_USER
+            - name: mysql_pw
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-rahasia
+                  key: MYSQL_PASSWORD
+            - name: mysql_db
+              valueFrom:
+                configMapRef:
+                  name: mysql-konfig
+                  key: MYSQL_DATABASE
           volumeMounts: #volume mounts
             - name: data
               mountPath: /var/lib/mysql
