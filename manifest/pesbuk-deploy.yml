@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: pesbuk
-        image: seargex/pesbuk:v1.0
+        image: seargex/sosmed:latest
         ports:
         - containerPort: 80
         env:
