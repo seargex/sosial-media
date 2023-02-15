@@ -9,15 +9,3 @@ spec:
   resources:
     requests:
       storage: 1Gi 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-dump      #pvc buat initdb
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: storage-ict #nama storage class
-  resources:
-    requests:
-      storage: 10Mbi 
