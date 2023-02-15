@@ -54,6 +54,8 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pvc
       - name: dump
+        configMap:
+          name: mysqldump
         persistentVolumeClaim:
           claimName: mysql-dump
 
