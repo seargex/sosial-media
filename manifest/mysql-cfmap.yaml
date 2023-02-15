@@ -6,6 +6,9 @@ data:
   initdb.sql: |
     SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
     SET time_zone = "+00:00";
+
+    CREATE DATABASE `pesbuk`;
+    use `pesbuk`;
     
     CREATE TABLE `users` (
     `id` int(11) NOT NULL,
