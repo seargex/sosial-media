@@ -14,7 +14,7 @@ spec:
         app: mysql
     spec:
       terminationGracePeriodSeconds: 10
-      containers:
+      containers:                               #main container
         - name: mysql
           image: mysql:5.7
           args:
@@ -23,8 +23,8 @@ spec:
             - name: mysql
               protocol: TCP
               containerPort: 3306
-          env:
-            - name: MYSQL_ROOT_PASSWORD #nama nya harus sesuai ama key
+          env:                                #environment key
+            - name: MYSQL_ROOT_PASSWORD       #nama nya harus sesuai ama key
               valueFrom:
                 secretKeyRef:
                   name: mysql-rahasia
@@ -41,26 +41,14 @@ spec:
                   key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
-                configMapKeyRef:
-                  name: mysql-konfig
+                secretKeyRef:
+                  name: mysql-rahasia
                   key: MYSQL_DATABASE
-          volumeMounts: #volume mounts
+          volumeMounts:                       #volume mounts
             - name: data
               mountPath: /var/lib/mysql
-      volumes: #pvc claim
+      volumes:                                #pvc claim
       - name: data
         persistentVolumeClaim:
           claimName: mysql-pvc
 
-
-          
-  # volumeClaimTemplates:
-  #   - metadata:
-  #       name: data
-  #     spec:
-  #       storageClassName: standard
-  #       accessModes:
-  #         - ReadWriteOnce
-  #       resources:
-  #         requests:
-  #           storage: 1Gi
