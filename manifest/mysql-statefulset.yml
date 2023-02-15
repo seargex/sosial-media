@@ -45,17 +45,14 @@ spec:
                   name: mysql-rahasia
                   key: MYSQL_DATABASE
           volumeMounts:                       #volume mounts
-            - name: data
-              mountPath: /var/lib/mysql
             - name: dump
               mountPath: /docker-entrypoint-initdb.d        #initdb
+            - name: data
+              mountPath: /var/lib/mysql
       volumes:                                #pvc claim
-      - name: data
-        persistentVolumeClaim:
-          claimName: mysql-pvc
       - name: dump
         configMap:
           name: mysqldump
+      - name: data
         persistentVolumeClaim:
-          claimName: mysql-dump
-
+          claimName: mysql-pvc
