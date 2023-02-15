@@ -1,3 +1,7 @@
+hi
+ini submission project devops ICT Academy. file yaml ada di /sosial-media/manifest.
+thankyou
+----------------------------------------------------------------------------------------------
 1. Build apps sosmed ini dengan docker image menggunakan dockerfile yang sudah ada.
 
 2. Kemudian push image apps sosmed ini ke dockerhub milik anda.
