@@ -1,11 +1,23 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pvc
+  name: mysql-pvc       #pvc buat sql
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: storage-ict #nama storage class
   resources:
     requests:
-      storage: 1Gi #ukuran brp
+      storage: 1Gi 
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-dump      #pvc buat initdb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: storage-ict #nama storage class
+  resources:
+    requests:
+      storage: 10Mbi 
